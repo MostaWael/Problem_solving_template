@@ -4,6 +4,18 @@ int gcd(int x, int y) // O(log(min(x, y))
     return gcd(y, x%y);
 }
 
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+// Function to find the LCM of two numbers.
+int lcm(int a, int b) {
+    return (a * b) / gcd(a, b);
+}
+
 int expo(int a, int b, int m) // O(logB)
 {
     if (b == 0) return 1;
