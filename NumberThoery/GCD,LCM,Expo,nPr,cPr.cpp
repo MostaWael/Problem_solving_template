@@ -38,6 +38,21 @@ ll binaryExpo(ll x,ll n){
 
 }
 
+ll binaryExpoMod(ll x,ll n,ll m){
+    ll result=1;
+
+    while(n>0){
+        if(n%2==1){
+            result=(result*x)%m;
+        }
+        x=(x*x)%m;
+        n=n/2;
+    }
+
+    return result;
+
+}
+
 int expoIterative(int a, int b) // O(lobB)
 {
     int res = 1;
