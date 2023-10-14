@@ -23,6 +23,21 @@ int expo(int a, int b, int m) // O(logB)
     return 1LL*res*res%m*(b%2 ? a : 1)%m;
 }
 
+ll binaryExpo(ll x,ll n){
+    ll result=1;
+
+    while(n>0){
+        if(n%2==1){
+            result=result*x;
+        }
+        x=x*x;
+        n=n/2;
+    }
+
+    return result;
+
+}
+
 int expoIterative(int a, int b) // O(lobB)
 {
     int res = 1;
