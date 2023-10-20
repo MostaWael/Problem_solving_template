@@ -32,7 +32,7 @@ void insertionSort(vector<long long> &arr){
 
 void countSort(vector<long long> &arr){
     //get the max element in the vector
-    long long mx=*max_element*(arr,begin(),arr.end());
+    long long mx=*max_element(arr.begin(),arr.end());
 
     vector<long long>freq(mx+1,0);
 
