@@ -111,3 +111,38 @@ void RadixSort(vector <ll> &a)
     }
     for (auto &i : a) i-=sh;
 }
+
+
+void mergeElemns(vector<int> &a, int l, int r){
+    // divide the array to left part and right part
+    auto L = vector<int> (a.begin()+l, a.begin()+(l+r)/2+1);
+    auto R = vector<int> (a.begin()+(l+r)/2+1, a.begin()+r+1);
+
+    L.push_back(2e9); // to prevent overflow in any array
+    R.push_back(2e9); // to prevent overflow in any array
+
+    int ptr1=0,ptr2=0;
+    // here i sort the two pecies
+    for(int i = l; i <= r ;i++){
+        if(L[ptr1] < R[ptr2]){
+            a[i] = L[ptr1++];
+        }else{
+            a[i] = R[ptr2++];
+        }
+    }
+
+}
+
+
+void mergeSort(vector<int> &a,int l,int r){
+    // we will create the dividing recure first
+    //the base case
+    if (l==r){
+        return;
+    }
+    // here i will divide into two parts until i get to one element
+    mergeSort(a,l,(l+r)/2);
+    mergeSort(a,(l+r)/2+1,r);
+
+    mergeElemns(a,l,r); // after i reach the one elements i start merge it
+}
