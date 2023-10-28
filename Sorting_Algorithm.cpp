@@ -146,3 +146,81 @@ void mergeSort(vector<int> &a,int l,int r){
 
     mergeElemns(a,l,r); // after i reach the one elements i start merge it
 }
+
+
+
+/*
+Quick Sort
+*/
+
+int partitioning(vector<int> &arr,int iBegin, int jEnd){
+    int i = iBegin;
+    int j = jEnd;
+
+    int pivLoc = i;
+    while(true){ //this will stop when sort the pos
+        // we check if only pivLoc < j
+        // we reduce the pos of j
+        while(arr[pivLoc]<=arr[j] && pivLoc!=j){ // try to find the pos from the end
+            j--;
+        }
+        if (pivLoc == j){
+            break;
+        }else if (arr[pivLoc] > arr[j]){
+            swap(arr[j],arr[pivLoc]);
+            pivLoc=j;
+        }
+
+        while(arr[pivLoc]>=arr[i] && pivLoc !=i){ //try to find the pos from the start
+            i++;
+        }
+        if(pivLoc == i){
+            break;
+        }else if(arr[pivLoc] < arr[i]){
+            swap(arr[i],arr[pivLoc]);
+            pivLoc=i;
+        }
+        return pivLoc;
+    }
+
+}
+
+/*
+    searching for the lowest and biggest of the povit
+    and swap it
+    and keep do it until the 'j' be lowest than i
+    and swap 'j' with the povit
+    and it will give you the correct povit location
+*/
+
+int partitioning2(vector<int> &arr,int l,int h){
+    int p = arr[l];
+    int i = l;
+    int j = h;
+
+    while(i<j){
+        do{
+            i++;
+        }while(arr[i]<=p)
+        do{
+            j--;
+        }while(arr[j]>p)
+
+        if(i < j){
+            swap(arr[i],arr[j]);
+        }
+    }
+
+    swap(arr[l],arr[j]);
+    return j;
+}
+
+void quickSort(vector<int> &arr,int l , int h){
+
+    if(l<h){
+        int piv = partitioning(arr,l,r);
+        quickSort(arr,l,piv - 1); //right side
+        quickSort(arr,piv + 1,h); //left side
+    }
+}
+
